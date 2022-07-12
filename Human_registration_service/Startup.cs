@@ -1,7 +1,10 @@
+using Human_Registration_Service.Context;
+using Human_Registration_Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +35,10 @@ namespace Human_registration_service
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Human_registration_service", Version = "v1" });
             });
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Database")));
+            services.AddScoped<IHumanInformationRepository, HumanInformationRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IImageRepository, ImageRepository >();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
