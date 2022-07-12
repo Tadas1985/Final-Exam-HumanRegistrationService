@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 
 namespace Human_Registration_Service.Models
 {
+    [Index(nameof(UserName),IsUnique =true) ]
     public class UserInformation
     {
         public static UserInformation Create(string userName, string password)
@@ -19,10 +21,12 @@ namespace Human_Registration_Service.Models
         }
 
         public Guid Id { get; set; }
+        
         public string UserName { get; set;}
         public byte[] Password { get; set;}
         public byte[] Salt { get; set; }
         public string Role { get; set;}
+
 
         public HumanInformation HumanInformationLink { get; set; }
         

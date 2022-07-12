@@ -13,12 +13,19 @@ namespace Human_Registration_Service.Services
             _context = context;
         }
 
-        public UserInformation AddNewUser(string userName, string password)
+        public bool AddNewUser(string userName, string password)
         {
             UserInformation userInformation = UserInformation.Create(userName, password);
             _context.UserInformation.Add(userInformation);
-            _context.SaveChanges();
-            return userInformation;
+            try
+            {
+                _context.SaveChanges();
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
 
         }
 
@@ -35,7 +42,9 @@ namespace Human_Registration_Service.Services
             
             if (currentUser.Password.SequenceEqual(passwordHash))
             {
-                return true;
+                //var jwt = new Authentication.JwtService();
+                return true
+                    ; //jwt.GetJwtToken(userName);
             }
             
             return false;
