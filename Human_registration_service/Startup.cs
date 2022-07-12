@@ -39,6 +39,7 @@ namespace Human_registration_service
             services.AddScoped<IHumanInformationRepository, HumanInformationRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
             services.AddScoped<IImageRepository, ImageRepository >();
+            services.AddScoped<IUserInformationRepository, UserInformationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
