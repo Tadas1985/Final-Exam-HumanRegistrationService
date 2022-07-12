@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "WGdlSvWXMXmbo+HIC50ZHcn8LMKk7iTO5dDUdkLcqojTS9SnMqb/0cMnHf7N3FRe8S8zWIHK1Ls+Kvq+pLMnpA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\tadas.valutis\\Desktop\\CodeAcademy\\FinalExam\\Human_registration_service\\Human_Registration_Service.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\tadas.valutis\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
