@@ -12,3 +12,8 @@ namespace Human_Registration_Service.Models
         public List<Location> LivingLocation;
     }
 }
+
+
+
+// paleidziam migracijas su: Add-MIgration name
+// paleidziam migracijas su: Update_Database
