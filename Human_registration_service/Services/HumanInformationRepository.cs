@@ -1,7 +1,8 @@
 ﻿using Human_Registration_Service.Context;
 using Human_Registration_Service.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Human_Registration_Service.Services
 {
@@ -14,12 +15,23 @@ namespace Human_Registration_Service.Services
             _context = context;
         }
 
-        public bool AddNewHuman(string name, string lastName, ulong personalNumber, ulong phoneNumber, string email)
+        public bool AddNewHuman(string name, string lastName, ulong personalNumber, ulong phoneNumber, string email, byte[] profileImage)
         {
-            HumanInformation humanInformation = new HumanInformation(name, lastName, personalNumber, phoneNumber, email);
+            HumanInformation humanInformation = new HumanInformation(name, lastName, personalNumber, phoneNumber, email, profileImage); 
             _context.Add(humanInformation);
             _context.SaveChanges();
             return true;
+        }
+
+        public HumanInformation GetHumanInformation(string UserName)
+        {
+            
+            var users =_context.UserInformation.Where(x => x.UserName == UserName).Include(x =>x.HumanInformationLink);
+            if (users.ToArray().Count() == 0)
+            {
+                return null;
+            }
+            return users.ToArray()[0].HumanInformationLink;
         }
 
         public IEnumerable<HumanInformation> GetUser()

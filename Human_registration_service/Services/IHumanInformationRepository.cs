@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Human_Registration_Service.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Human_Registration_Service.Services
@@ -13,7 +14,8 @@ namespace Human_Registration_Service.Services
         //public bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt);
         //public IEnumerable<HumanInformationRepository> GetUser();
 
-        public bool AddNewHuman(string name, string lastName, UInt64 personalNumber, UInt64 phoneNumber, string email);
+        public bool AddNewHuman(string name, string lastName, UInt64 personalNumber, UInt64 phoneNumber, string email, byte[] profileImage);
+        public HumanInformation GetHumanInformation(string UserName);
 
     }
 }

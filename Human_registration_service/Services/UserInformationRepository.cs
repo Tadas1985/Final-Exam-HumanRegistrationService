@@ -31,7 +31,7 @@ namespace Human_Registration_Service.Services
 
         public bool LogIn(string userName, string password)
         {
-            var users =   _context.UserInformation.Where(x => x.UserName == userName);
+            var users = _context.UserInformation.Where(x => x.UserName == userName);
             if (users.Count() == 0)
             {
                 return false;
@@ -43,8 +43,8 @@ namespace Human_Registration_Service.Services
             if (currentUser.Password.SequenceEqual(passwordHash))
             {
                 //var jwt = new Authentication.JwtService();
-                return true
-                    ; //jwt.GetJwtToken(userName);
+                return true;
+                    
             }
             
             return false;

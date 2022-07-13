@@ -5,13 +5,14 @@ namespace Human_Registration_Service.Models
 {
     public class HumanInformation
     {
-        public HumanInformation(string name, string lastName, ulong personalNumber, ulong phoneNumber, string email)
+        public HumanInformation(string name, string lastName, ulong personalNumber, ulong phoneNumber, string email, byte[] profileImage)
         {
             Name = name;
             LastName = lastName;
             PersonalNumber = personalNumber;
             PhoneNumber = phoneNumber;
             Email = email;
+            ProfileImage = profileImage;
         }
 
         public Guid Id { get; set; }

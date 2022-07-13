@@ -59,3 +59,8 @@ C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\
 C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\tadas.valutis\Desktop\CodeAcademy\FinalExam\Human_registration_service\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll

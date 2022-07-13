@@ -4,6 +4,8 @@ using Human_Registration_Service.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Drawing;
+using System.IO;
 
 namespace Human_Registration_Service.Controllers
 {
@@ -28,8 +30,15 @@ namespace Human_Registration_Service.Controllers
             {
                 return "All fields must contain alphnumeric symbols";
             }
+            if (!Validator.IsImageTypeCorrect(ProfileImage.Image.ContentType))
+                return "Image type is not valid (only jpeg and png accepted)";
+            using var memoryStream = new MemoryStream();
+            ProfileImage.Image.CopyTo(memoryStream);
+            var tempImage = ImageUploadRequest.ResizeImage(Image.FromStream(memoryStream));
             
-            return _humanInformation.AddNewHuman(name,lastName,personalNumber,phoneNumber,email)? "OK": "Failed";
+            var ms = new MemoryStream();
+            tempImage.Save(ms, ProfileImage.Image.ContentType== "image/png"?System.Drawing.Imaging.ImageFormat.Png: System.Drawing.Imaging.ImageFormat.Jpeg);
+            return _humanInformation.AddNewHuman(name,lastName,personalNumber,phoneNumber,email, ms.ToArray())? "OK": "Failed";
             
             //return _humanInformation.SignUpNewAccount(name, lastName, email, phoneNumber,personalNumber);
         }
@@ -40,3 +49,9 @@ namespace Human_Registration_Service.Controllers
         //}
     }
 }
+
+
+
+
+
+  

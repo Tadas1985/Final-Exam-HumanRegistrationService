@@ -16,11 +16,13 @@ namespace Human_Registration_Service.Controllers
     {
         IUserInformationRepository _userRepository;
         IJwtService _jwtService;
+        IHumanInformationRepository _humanInformationRepository;
 
-        public UserInformationController(IUserInformationRepository userRepository, IJwtService jwtService)
+        public UserInformationController(IUserInformationRepository userRepository, IJwtService jwtService, IHumanInformationRepository humanInformationRepository)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
+            _humanInformationRepository = humanInformationRepository;
         }
         [HttpPost("AddNewUser")]
         public bool AddNewUser([FromForm] string userName, [FromForm] string password)
@@ -45,6 +47,11 @@ namespace Human_Registration_Service.Controllers
         public string Getstring()
         {
             return "Hi";
+        }
+        [HttpGet("GetHumanInformation")]
+        public HumanInformation GetHumanInformation([FromQuery] string userName)
+        {
+            return _humanInformationRepository.GetHumanInformation(userName);
         }
 
     }

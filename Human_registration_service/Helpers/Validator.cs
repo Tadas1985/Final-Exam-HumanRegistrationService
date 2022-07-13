@@ -15,6 +15,10 @@ namespace Human_Registration_Service.Helpers
         {
             return input != 0;
         }
+        public static bool IsImageTypeCorrect(string imageType)
+        {
+            return imageType == "image/png" || imageType == "image/jpeg";
+        }
     }
 }
 

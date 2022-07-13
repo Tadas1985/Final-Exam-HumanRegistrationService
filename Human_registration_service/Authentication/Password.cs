@@ -18,7 +18,8 @@ namespace Human_Registration_Service.Authentication
             hmac.Key = passwordSalt;
            // passwordSalt = hmac.Key;
             passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-
+            
         }
+        
     }
 }
