@@ -13,6 +13,15 @@ namespace Human_Registration_Service.Services
         {
             _context = context;
         }
+
+        public bool AddNewHuman(string name, string lastName, ulong personalNumber, ulong phoneNumber, string email)
+        {
+            HumanInformation humanInformation = new HumanInformation(name, lastName, personalNumber, phoneNumber, email);
+            _context.Add(humanInformation);
+            _context.SaveChanges();
+            return true;
+        }
+
         public IEnumerable<HumanInformation> GetUser()
         {
             return _context.HumanInformation;
@@ -28,5 +37,6 @@ namespace Human_Registration_Service.Services
         //    user.PasswordHash = passwordHash;
         //    return user;
         //}
+
     }
 }

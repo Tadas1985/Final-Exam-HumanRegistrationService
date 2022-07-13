@@ -6,6 +6,7 @@ using System.Security.Claims;
 namespace Human_Registration_Service.Authentication
 
 {
+    
     public class JwtService: IJwtService
     {
         private readonly IConfiguration _configuration;
@@ -17,14 +18,14 @@ namespace Human_Registration_Service.Authentication
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name,username)
+                new Claim(ClaimTypes.Name,username),
             };
             var secretToken = _configuration.GetSection("Jwt:Key").Value;
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secretToken));
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(
-                issuer: "https://localhost:44360/",
-                audience: "https://localhost:44360/",
+                issuer: "https://localhost:44339/",
+                audience: "https://localhost:44339/",
                 claims: claims,
                 expires: System.DateTime.Now.AddDays(1),
                 signingCredentials: cred);

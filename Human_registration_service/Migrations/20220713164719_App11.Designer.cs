@@ -4,14 +4,16 @@ using Human_Registration_Service.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Human_Registration_Service.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220713164719_App11")]
+    partial class App11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,8 +42,8 @@ namespace Human_Registration_Service.Migrations
                     b.Property<decimal>("PersonalNumber")
                         .HasColumnType("decimal(20,0)");
 
-                    b.Property<decimal>("PhoneNumber")
-                        .HasColumnType("decimal(20,0)");
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("ProfileImage")
                         .HasColumnType("varbinary(max)");

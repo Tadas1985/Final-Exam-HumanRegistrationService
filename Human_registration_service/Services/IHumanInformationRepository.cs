@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Human_Registration_Service.Services
 {
@@ -11,5 +12,8 @@ namespace Human_Registration_Service.Services
         //public bool Login(string userName, string password);
         //public bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt);
         //public IEnumerable<HumanInformationRepository> GetUser();
+
+        public bool AddNewHuman(string name, string lastName, UInt64 personalNumber, UInt64 phoneNumber, string email);
+
     }
 }

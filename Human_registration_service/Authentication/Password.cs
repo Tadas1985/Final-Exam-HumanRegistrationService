@@ -16,6 +16,7 @@ namespace Human_Registration_Service.Authentication
         {
             using var hmac = new HMACSHA512();
             hmac.Key = passwordSalt;
+           // passwordSalt = hmac.Key;
             passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 
         }

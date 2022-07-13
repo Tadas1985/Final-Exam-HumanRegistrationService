@@ -40,7 +40,7 @@ namespace Human_Registration_Service.Controllers
             string token = _jwtService.GetJwtToken(request.UserName);
             return token;
         }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme /*, Roles = "user" */)]
         [HttpGet("GetString")]
         public string Getstring()
         {
