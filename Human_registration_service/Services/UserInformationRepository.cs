@@ -1,5 +1,6 @@
 ﻿using Human_Registration_Service.Context;
 using Human_Registration_Service.Models;
+using System;
 using System.Linq;
 
 namespace Human_Registration_Service.Services
@@ -11,6 +12,7 @@ namespace Human_Registration_Service.Services
         public UserInformationRepository(ApplicationDbContext context)
         {
             _context = context;
+            
         }
 
         public bool AddNewUser(string userName, string password)
@@ -29,28 +31,48 @@ namespace Human_Registration_Service.Services
 
         }
 
-        public bool LogIn(string userName, string password)
+        public bool DeleteUser(string userName)
         {
-            var users = _context.UserInformation.Where(x => x.UserName == userName);
+            _context.UserInformation.RemoveRange(_context.UserInformation.Where(x => x.UserName == userName));
+            return _context.SaveChanges()>0;
+        }
+        public UserInformation GetUserByName(string name)
+        {
+            var users = _context.UserInformation.Where(x => x.UserName == name);
             if (users.Count() == 0)
             {
-                return false;
+                return null;
             }
-            
-            var currentUser = users.ToArray()[0];
+            _context.Entry(users.ToArray()[0]).Reload();
+            return users.ToArray()[0];
+        }
+        
+        public bool LogIn(string userName, string password, out string role)
+        {
+           
+            role = null;
+            var currentUser = GetUserByName(userName);
+            if (currentUser == null)
+                return false;   
             Authentication.Password.EncryptWithSalt(password, out byte []passwordHash, currentUser.Salt);
             
             if (currentUser.Password.SequenceEqual(passwordHash))
             {
                 //var jwt = new Authentication.JwtService();
+                role = currentUser.Role;
                 return true;
                     
             }
             
-            return false;
-
+            return false;           
             
-            
+        }
+        public Guid FindIdByUserName(string userName)
+        {
+            var currentUser = GetUserByName(userName);
+            if(currentUser == null)
+                return Guid.Empty;
+            return currentUser.Id;
         }
     }
 }

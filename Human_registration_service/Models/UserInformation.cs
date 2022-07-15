@@ -11,10 +11,11 @@ namespace Human_Registration_Service.Models
         {
             var userInformation = new UserInformation();
             userInformation.UserName = userName;
-    
+            userInformation.Role = "user";
             Authentication.Password.Encrypt(password,out byte [] Password, out byte[] Salt);
             userInformation.Password = Password;
             userInformation.Salt = Salt;
+            
             return userInformation;
 
 
@@ -29,6 +30,7 @@ namespace Human_Registration_Service.Models
 
 
         public HumanInformation HumanInformationLink { get; set; }
-        
+
+      
     }
 }

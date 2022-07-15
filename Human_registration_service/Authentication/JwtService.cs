@@ -14,11 +14,12 @@ namespace Human_Registration_Service.Authentication
         {
             _configuration = configuration;
         }
-        public string GetJwtToken(string username)
+        public string GetJwtToken(string username, string role)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name,username),
+                new Claim(ClaimTypes.Role, role)
             };
             var secretToken = _configuration.GetSection("Jwt:Key").Value;
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(secretToken));
