@@ -11,7 +11,8 @@ namespace Human_Registration_Service.Context
         public DbSet<UserInformation>UserInformation { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         {
-
+            //this.ChangeTracker.QueryTrackingBehavior = Microsoft.EntityFrameworkCore.QueryTrackingBehavior.NoTracking;
         }
+        
     }
 }

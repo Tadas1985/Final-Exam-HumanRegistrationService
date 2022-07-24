@@ -30,7 +30,7 @@ namespace Human_Registration_Service.Controllers
             
         }
         [HttpPost("AddNewUser")]
-        public bool AddNewUser([FromForm] string userName, [FromForm] string password)
+        public bool AddNewUser([FromQuery] string userName, [FromQuery] string password)
         {
             return _userRepository.AddNewUser(userName, password);
         }
@@ -40,27 +40,27 @@ namespace Human_Registration_Service.Controllers
         //    return _userRepository.LogIn(userName, password);   
         //}
         [HttpPost("logIn")]
-        public async Task<ActionResult<string>> LogIn(UserDTO request)
+        public async Task<ActionResult<string>> LogIn([FromQuery] UserDTO request)
         {
             if (!_userRepository.LogIn(request.UserName, request.Password, out string role ))  //out string role
                 return new BadRequestObjectResult($"Bad username or password");
             string token = _jwtService.GetJwtToken(request.UserName, role);
             return token;
         }
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme , Roles = "user" )]
-        [HttpGet("getString")]
-        public string Getstring()
-        {
-           // Request.Headers;
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme , Roles = "user" )]
+        //[HttpGet("getString")]
+        //public string Getstring()
+        //{
+        //   // Request.Headers;
 
-            return "Hi";
-        }
+        //    return "Hi";
+        //}
       
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "admin")]
-        [HttpPost("deleteUser")]
+        [HttpDelete("deleteUser")]
         public bool Getstring(string userName)
         {
-
+           
             return _userRepository.DeleteUser(userName);
             
         }

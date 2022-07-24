@@ -1,5 +1,6 @@
 ﻿using Human_Registration_Service.Context;
 using Human_Registration_Service.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -33,7 +34,19 @@ namespace Human_Registration_Service.Services
 
         public bool DeleteUser(string userName)
         {
-            _context.UserInformation.RemoveRange(_context.UserInformation.Where(x => x.UserName == userName));
+            //_context.UserInformation.RemoveRange(_context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink));
+            var users = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink);
+            var currentUser = users.ToArray()[0];
+
+            if (currentUser.HumanInformationLink != null)
+            {
+                if (currentUser.HumanInformationLink.LocationLink != null)
+                {
+                    _context.Remove(currentUser.HumanInformationLink.LocationLink);
+                }
+                _context.Remove(currentUser.HumanInformationLink);
+            }
+            _context.Remove(currentUser);
             return _context.SaveChanges()>0;
         }
         public UserInformation GetUserByName(string name)

@@ -15,14 +15,19 @@ namespace Human_Registration_Service.Controllers
         }
 
         [HttpPost("addLocation")]
-        public void AddLocation([FromQuery] string city, [FromQuery] string streetName, [FromQuery] int houseNumber, [FromQuery] int apartmentNumber )
+        public bool AddLocation([FromQuery] string userName , [FromQuery] string city, [FromQuery] string streetName, [FromQuery] int houseNumber, [FromQuery] int apartmentNumber )
             {
-                _locationRepository.AddNewLocation(city, streetName, houseNumber, apartmentNumber);
+               return _locationRepository.AddNewLocation(userName, city, streetName, houseNumber, apartmentNumber);
             }
         [HttpPost("updateLocation")]
-        public void UpdateLocation([FromQuery] string city, [FromQuery] string streetName, [FromQuery] int houseNumber, [FromQuery] int apartmentNumber)
+        public void UpdateLocation([FromQuery] string userName, [FromQuery] string city, [FromQuery] string streetName, [FromQuery] int houseNumber, [FromQuery] int apartmentNumber )
         {
-            _locationRepository.AddNewLocation(city, streetName, houseNumber, apartmentNumber);
+            _locationRepository.AddNewLocation(userName, city, streetName, houseNumber, apartmentNumber);
+        }
+        [HttpPost("updateApartmentNumber")]
+        public void UpdateApartment([FromQuery] string userName, [FromQuery] int apartmentNumber)
+        {
+            _locationRepository.UpdateApartmentNumber(userName, apartmentNumber);
         }
     }
 }

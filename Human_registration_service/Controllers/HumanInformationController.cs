@@ -3,7 +3,6 @@ using Human_Registration_Service.Models;
 using Human_Registration_Service.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Drawing;
@@ -33,7 +32,7 @@ namespace Human_Registration_Service.Controllers
             Validator.IsNumberNotZero(phoneNumber) &&
             Validator.IsNotEmpty(email)))
             {
-                return "All fields must contain alphnumeric symbols";
+                return "All fields must contain alphanumeric symbols";
             }
             if (!Validator.IsImageTypeCorrect(ProfileImage.Image.ContentType))
                 return "Image type is not valid (only jpeg and png accepted)";

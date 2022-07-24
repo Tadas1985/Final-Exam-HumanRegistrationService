@@ -19,18 +19,24 @@ namespace Human_Registration_Service.Services
 
         public bool AddNewHuman(string userName, string name, string lastName, ulong personalNumber, ulong phoneNumber, string email, byte[] profileImage)
         {
-            // Paklausk Sergejaus del ko neveikia sitas metodas. (Nemato ankciau issaugotu yrasu)
+            
+            // Paklausk Sergejaus del ko neveikia sitas metodas. (Nemato ankciau issaugotu yrasu, reikia praleisti is naujo programa kad matytu yrasus)
             var userInformationRepository = new UserInformationRepository(_context);
             var currentUser = userInformationRepository.GetUserByName(userName);
+            
+            
             if (currentUser.HumanInformationLink != null)
                 return false;
             //var userId = userInformationRepository.FindIdByUserName(userName);
             HumanInformation humanInformation = new HumanInformation(name, lastName, personalNumber, phoneNumber, email, profileImage); 
             _context.Add(humanInformation);
-            _context.SaveChanges();
+           // _context.SaveChanges();
             
             currentUser.HumanInformationLink = humanInformation;
+            // _context.Entry(currentUser).State = EntityState.Modified; 
+           // _context.Update(currentUser);
             _context.SaveChanges();
+            
             
             return true;
         }
@@ -90,6 +96,10 @@ namespace Human_Registration_Service.Services
             information.Email = newEmail;
             _context.SaveChanges();
         }
+        //public void DeleteHuman(string userName)
+        //{
+        //    var human = _context.HumanInformation.Where(x => x.Id==)
+        //}
 
 
 
