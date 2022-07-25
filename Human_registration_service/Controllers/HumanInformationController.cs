@@ -21,6 +21,7 @@ namespace Human_Registration_Service.Controllers
         {
             _humanInformation = humanInformation;
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
         [HttpPost("addHumanInfromation")]
         public string AddNewHumanInformation([FromQuery] string userName, string name, string lastName, UInt64 personalNumber, UInt64 phoneNumber, string email, [FromForm] Helpers.ImageUploadRequest ProfileImage)
         {
@@ -74,16 +75,28 @@ namespace Human_Registration_Service.Controllers
 
 
         }
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
+        //[HttpPut("updatePhoneNumber")]
+        //public void UpdatePhoneNumber([FromQuery] UInt64 phoneNumber, UInt64 newPhoneNumber)
+        //{
+
+        //     _humanInformation.UpdatePhoneNumber(phoneNumber, newPhoneNumber);
+        //}
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
         [HttpPut("updatePhoneNumber")]
-        public void UpdatePhoneNumber([FromQuery] UInt64 phoneNumber, UInt64 newPhoneNumber)
+        public void UpdatePhoneNumber([FromQuery] string userName, UInt64 newPhoneNumber)
         {
-             _humanInformation.UpdatePhoneNumber(phoneNumber, newPhoneNumber);
+
+            if (Validator.IsNotEmpty(newPhoneNumber.ToString()))
+                _humanInformation.UpdatePhoneNumber(userName, newPhoneNumber);
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
         [HttpPut("updatePersonalNumber")]
-        public void UpdatePersonalNumber([FromQuery] UInt64 personalNumber, UInt64 newPersonalNumber)
+        public void UpdatePersonalNumber([FromQuery] string userName, UInt64 newPersonalNumber)
         {
-            _humanInformation.UpdatePersonalNumber(personalNumber, newPersonalNumber);
+            _humanInformation.UpdatePersonalNumber(userName, newPersonalNumber);
         }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
         [HttpPut("updateEmail")]
         public void UpdateEmail([FromQuery] string email, string newEmail)
         {

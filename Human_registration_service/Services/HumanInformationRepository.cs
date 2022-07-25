@@ -77,23 +77,24 @@ namespace Human_Registration_Service.Services
             
         }
 
-        public void UpdatePhoneNumber(UInt64 phoneNumber, UInt64 newPhoneNumber)
+        public void UpdatePhoneNumber(string userName, UInt64 newPhoneNumber)
         {
-            var information = _context.HumanInformation.Where(x => x.PhoneNumber == phoneNumber).FirstOrDefault();
-            information.PhoneNumber = newPhoneNumber;
+            var information = _context.UserInformation.Where(x => x.UserName == userName).Include(x =>x.HumanInformationLink);
+            information.ToArray()[0].HumanInformationLink.PhoneNumber = newPhoneNumber;
+            
             _context.SaveChanges();            
         }
-        public void UpdatePersonalNumber(UInt64 personalNumber, UInt64 newPersonalNumber)
+        public void UpdatePersonalNumber(string userName, UInt64 newPersonalNumber)
         {
-            var information = _context.HumanInformation.Where(x => x.PersonalNumber == personalNumber).FirstOrDefault();
-            information.PersonalNumber = newPersonalNumber;
+            var information = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink);
+            information.ToArray()[0].HumanInformationLink.PersonalNumber = newPersonalNumber;
             _context.SaveChanges();
         }
 
-        public void UpdateEmail(string email, string newEmail)
+        public void UpdateEmail(string userName, string newEmail)
         {
-            var information = _context.HumanInformation.Where(x=> x.Email == email).FirstOrDefault();
-            information.Email = newEmail;
+            var information = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink);
+            information.ToArray()[0].HumanInformationLink.Email = newEmail;
             _context.SaveChanges();
         }
         //public void DeleteHuman(string userName)

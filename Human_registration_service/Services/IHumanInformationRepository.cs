@@ -18,9 +18,9 @@ namespace Human_Registration_Service.Services
         public HumanInformation GetHumanInformation(string UserName);
         public byte[] GetHumanInformationPhotoBytes(string UserName);
         public void UpdateName(string userName, string name);
-        public void UpdatePhoneNumber(UInt64 phoneNumber, UInt64 newPhoneNumber);
-        public void UpdatePersonalNumber(UInt64 personalNumber, UInt64 newPersonalNumber);
-        public void UpdateEmail(string email, string newEmail);
+        public void UpdatePhoneNumber(string userName, UInt64 newPhoneNumber);
+        public void UpdatePersonalNumber(string userName, UInt64 newPersonalNumber);
+        public void UpdateEmail(string userName, string newEmail);
 
     }
 }

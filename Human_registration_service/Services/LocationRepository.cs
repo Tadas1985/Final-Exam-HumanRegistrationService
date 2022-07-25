@@ -17,7 +17,7 @@ namespace Human_Registration_Service.Services
         {
            
             var currentUser = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();
-           // var currentUser = users.ToArray()[0];
+            //var currentUser = users.ToArray()[0];
 
             if (currentUser.HumanInformationLink == null)
                 return false;
@@ -32,29 +32,38 @@ namespace Human_Registration_Service.Services
 
             return true;
         }
-
+        //public void LinkToLocation(string userName)
+        //{
+        //    var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();
+        //}
         public void UpdateApartmentNumber(string userName, int newApartmentNumber)
         {
-            var apartmentNumber = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();
-            apartmentNumber.HumanInformationLink.LocationLink.ApartmentNumber = newApartmentNumber;
+            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();      
+            linkToLocation.HumanInformationLink.LocationLink.ApartmentNumber = newApartmentNumber;
             _context.SaveChanges();
             
 
         }
 
-        //public void UpdateCity(string city, string newCity)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+        public void UpdateCity(string userName, string newCity)
+        {
+            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();
+            linkToLocation.HumanInformationLink.LocationLink.City = newCity;
+            _context.SaveChanges();
+        }
 
-        //public void UpdateHouseNUmber(int houseNumber, int newHouseNUmber)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+        public void UpdateHouseNumber(string userName, int newHouseNUmber)
+        {
+            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();
+            linkToLocation.HumanInformationLink.LocationLink.HouseNumber = newHouseNUmber;
+            _context.SaveChanges();
+        }
 
-        //public void UpdateStreet(string streetName, string newStreetName)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+        public void UpdateStreet(string userName, string newStreetName)
+        {
+            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).First();
+            linkToLocation.HumanInformationLink.LocationLink.Street = newStreetName;
+            _context.SaveChanges();
+        }
     }
 }

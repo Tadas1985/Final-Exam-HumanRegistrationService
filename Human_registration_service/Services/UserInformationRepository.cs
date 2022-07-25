@@ -51,13 +51,15 @@ namespace Human_Registration_Service.Services
         }
         public UserInformation GetUserByName(string name)
         {
-            var users = _context.UserInformation.Where(x => x.UserName == name);
-            if (users.Count() == 0)
-            {
-                return null;
-            }
-            _context.Entry(users.ToArray()[0]).Reload();
-            return users.ToArray()[0];
+            return _context.UserInformation.FirstOrDefault(x => x.UserName == name);
+
+            //var users = _context.UserInformation.Where(x => x.UserName == name);
+            //if (users.Count() == 0)
+            //{
+            //    return null;
+            //}
+            //_context.Entry(users.ToArray()[0]).Reload();
+            //return users.ToArray()[0];
         }
         
         public bool LogIn(string userName, string password, out string role)
