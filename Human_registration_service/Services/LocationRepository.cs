@@ -32,39 +32,34 @@ namespace Human_Registration_Service.Services
 
             return true;
         }
-        //public object LinkToLocation(string userName)
-        //{
-        //    var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink).First();
-        //    return linkToLocation;
-        //}
+        public Location GetLocationByUserName(string userName)
+        {
+            var user = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink).First();
+            
+            return user.HumanInformationLink.LocationLink;
+        }
         public void UpdateApartmentNumber(string userName, int newApartmentNumber)
         {
-
-            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink).First();
-            linkToLocation.HumanInformationLink.LocationLink.ApartmentNumber = newApartmentNumber;
+            GetLocationByUserName(userName).ApartmentNumber = newApartmentNumber;
             _context.SaveChanges();
             
-
         }
 
         public void UpdateCity(string userName, string newCity)
         {
-            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink).First();
-            linkToLocation.HumanInformationLink.LocationLink.City = newCity;
+            GetLocationByUserName(userName).City = newCity;
             _context.SaveChanges();
         }
 
         public void UpdateHouseNumber(string userName, int newHouseNUmber)
         {
-            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink).First();
-            linkToLocation.HumanInformationLink.LocationLink.HouseNumber = newHouseNUmber;
+            GetLocationByUserName(userName).HouseNumber = newHouseNUmber;
             _context.SaveChanges();
         }
 
         public void UpdateStreet(string userName, string newStreetName)
         {
-            var linkToLocation = _context.UserInformation.Where(x => x.UserName == userName).Include(x => x.HumanInformationLink).Include(x => x.HumanInformationLink.LocationLink).First();
-            linkToLocation.HumanInformationLink.LocationLink.Street = newStreetName;
+            GetLocationByUserName(userName).Street = newStreetName;
             _context.SaveChanges();
         }
     }
