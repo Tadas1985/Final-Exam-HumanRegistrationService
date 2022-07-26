@@ -29,8 +29,8 @@ namespace Human_Registration_Service.Controllers
             _locationRepository.AddNewLocation(userName, city, streetName, houseNumber, apartmentNumber);
         }
 
-        
-        [HttpPost("updateApartmentNumber")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
+        [HttpPut("updateApartmentNumber")]
         public void UpdateApartment([FromQuery] string userName, [FromQuery] int apartmentNumber)
         {
             _locationRepository.UpdateApartmentNumber(userName, apartmentNumber);
@@ -52,9 +52,9 @@ namespace Human_Registration_Service.Controllers
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "user")]
         [HttpPut("updateHouseNumber")]
-        public void UpdateHouseNUmber([FromQuery] string userName, string newStreet)
+        public void UpdateHouseNUmber([FromQuery] string userName, int newHouseNumber)
         {
-            _locationRepository.UpdateStreet(userName, newStreet);
+            _locationRepository.UpdateHouseNumber(userName, newHouseNumber);
         }
     }
 }
